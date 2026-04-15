@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Post{% endblock %}
+
+{% block content %}
+<section class="form-section">
+
+    <div class="form-header">
+        <span class="hero-badge">Warning</span>
+        <h1>Delete Post</h1>
+    </div>
+
+    <div class="form-box" style="text-align:center;">
+
+        <p style="margin-bottom:20px;">
+            Are you sure you want to delete:
+            <strong>{{ post.title }}</strong> ?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button class="submit-btn" style="background:#d9534f;">
+                Yes, Delete
+            </button>
+
+            <a href="{% url 'home' %}" class="submit-btn">
+                Cancel
+            </a>
+        </form>
+
+    </div>
+
+</section>
+{% endblock %}
