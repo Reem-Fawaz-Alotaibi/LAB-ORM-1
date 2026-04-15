@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Home | Life Balance{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-text">
+        <span class="hero-badge">Lifestyle & Productivity</span>
+        <h1>Life Balance</h1>
+        <p>
+            Find your balance between productivity, healthy habits, and a peaceful daily routine.
+        </p>
+    </div>
+</section>
+
+<section class="content-layout">
+    <div class="main-posts">
+
+        {% if posts %}
+        {% with first_post=posts.0 %}
+        <article class="featured-post">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&w=1200&q=80" alt="Featured image">
+            </div>
+
+            <div class="post-info">
+                <span>{{ first_post.published_at|date:"M d, Y" }}</span>
+                <span>•</span>
+                <span>{{ first_post.published_at|time:"h:i A" }}</span>
+            </div>
+
+            <h2>{{ first_post.title }}</h2>
+            <p>{{ first_post.content|truncatewords:30 }}</p>
+        </article>
+        {% endwith %}
+
+        <div class="posts-grid">
+            {% for post in posts|slice:"1:" %}
+            <article class="post-card">
+                <div class="post-card-image">
+                    <img src="https://i.pinimg.com/1200x/ce/81/bc/ce81bc80aa88e372c973a612883be83e.jpg">
+                </div>
+
+                <div class="post-info">
+                    <span>{{ post.published_at|date:"M d, Y" }}</span>
+                    <span>•</span>
+                    <span>{{ post.published_at|time:"h:i A" }}</span>
+                </div>
+
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content|truncatewords:16 }}</p>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <article class="featured-post">
+            <div class="featured-image">
+                <img src="https://i.pinimg.com/1200x/ce/81/bc/ce81bc80aa88e372c973a612883be83e.jpg">
+            </div>
+
+            <div class="post-info">
+                <span>Apr 15, 2026</span>
+                <span>•</span>
+                <span>09:00 AM</span>
+            </div>
+
+            <h2>Welcome to Life Balance</h2>
+            <p>
+                No posts have been published yet. Start by creating your first post from the Add Post page.
+            </p>
+        </article>
+        {% endif %}
+
+    </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h4>About</h4>
+            <p>
+                Life Balance is a simple blog about productivity, calm routines, and better daily habits.
+            </p>
+        </div>
+
+        <div class="sidebar-card">
+            <h4>Topics</h4>
+            <ul>
+                <li>Time Management</li>
+                <li>Healthy Habits</li>
+                <li>Morning Routine</li>
+                <li>Focus & Growth</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <h4>Quote</h4>
+            <p class="quote">
+                “Small daily improvements are the key to long-term success.”
+            </p>
+        </div>
+    </aside>
+</section>
+{% endblock %}

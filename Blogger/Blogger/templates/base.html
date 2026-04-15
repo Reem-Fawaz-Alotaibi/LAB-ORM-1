@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Life Balance{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+
+<body>
+
+    <header class="top-strip">
+        <div class="container top-strip-inner">
+            <span>MINDFUL ROUTINE</span>
+            <span>WELLNESS</span>
+            <span>PRODUCTIVITY</span>
+            <span>SELF GROWTH</span>
+            <span>CALM LIVING</span>
+        </div>
+    </header>
+
+    <header class="site-header">
+        <div class="container header-wrap">
+            <a href="{% url 'home' %}" class="site-logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">Life Balance</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu">
+                ☰
+            </button>
+
+            <nav class="site-nav" id="navMenu">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'add_post' %}">Add Post</a>
+                <a href="#">Lifestyle</a>
+                <a href="#">Focus</a>
+                <a href="#">Wellness</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-area">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-wrap">
+
+            <div class="footer-brand">
+                <h3>Life Balance</h3>
+                <p>Simple ideas for a better and more balanced life.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'add_post' %}">Add Post</a></li>
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Productivity</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Life Balance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menuToggle");
+            const navMenu = document.getElementById("navMenu");
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener("click", function () {
+                    navMenu.classList.toggle("active");
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
